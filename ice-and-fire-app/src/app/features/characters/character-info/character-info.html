@@ -1,0 +1,130 @@
+@if (loading()) {
+<app-character-info-skeleton></app-character-info-skeleton>
+} @else if (character(); as character) {
+<div>
+    <div class="p-4 pb-0">
+        <div class="flex gap-2 mb-4">
+            <p-button label="Go Back" icon="pi pi-arrow-left" (onClick)="onGoBack()" severity="secondary">
+            </p-button>
+            @if (isAuthenticated()) {
+            <p-button [label]="isFavorite() ? 'Remove from Favorites' : 'Add to Favorites'"
+                [icon]="isFavorite() ? 'pi pi-heart-fill' : 'pi pi-heart'" (onClick)="onToggleFavorite()"
+                [severity]="isFavorite() ? 'danger' : 'success'">
+            </p-button>
+            } @else {
+            <p-button label="Favorite" icon="pi pi-heart" severity="secondary" disabled="true" pTooltip="Login required"
+                tooltipPosition="bottom">
+            </p-button>
+            }
+        </div>
+    </div>
+
+    <div class="character-info-container px-4 pb-4">
+        <p-card class="character-info-card">
+            <ng-template pTemplate="header">
+                <div class="p-4 text-center">
+                    <i class="pi pi-user text-6xl text-white"></i>
+                </div>
+            </ng-template>
+
+            <div class="character-details">
+                <div class="mb-4">
+                    <h1 class="text-3xl font-bold m-0 mb-3 text-center">{{ character.name || 'Unknown Character' }}</h1>
+
+                    <div class="flex flex-wrap justify-content-center gap-2 mb-4">
+                        @if (character.gender) {
+                        <p-tag [value]="character.gender"
+                            [severity]="character.gender === 'Female' ? 'danger' : 'info'"></p-tag>
+                        }
+                        @if (character.culture) {
+                        <p-tag [value]="character.culture" severity="success"></p-tag>
+                        }
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                        <app-character-info-field title="Born" icon="pi-calendar" iconColor="primary"
+                            [value]="character.born">
+                        </app-character-info-field>
+                    </div>
+
+                    <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                        <app-character-info-field title="Died" icon="pi-times-circle" iconColor="red-500"
+                            [value]="character.died">
+                        </app-character-info-field>
+                    </div>
+
+                    <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                        <app-character-info-field title="Titles" icon="pi-crown" iconColor="orange"
+                            [value]="character.titles" severity="warn">
+                        </app-character-info-field>
+                    </div>
+
+                    <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                        <app-character-info-field title="Aliases" icon="pi-tag" iconColor="info"
+                            [value]="character.aliases" severity="info">
+                        </app-character-info-field>
+                    </div>
+
+                    <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                        <app-character-info-field title="Father" icon="pi-user" iconColor="primary"
+                            [value]="hasFather()">
+                        </app-character-info-field>
+                    </div>
+
+                    <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                        <app-character-info-field title="Mother" icon="pi-user" iconColor="pink-500"
+                            [value]="hasMother()">
+                        </app-character-info-field>
+                    </div>
+
+                    <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                        <app-character-info-field title="Spouse" icon="pi-heart" iconColor="red-500"
+                            [value]="hasSpouse()">
+                        </app-character-info-field>
+                    </div>
+
+                    <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                        <app-character-info-field title="Allegiances" icon="pi-shield" iconColor="danger"
+                            [value]="character.allegiances" severity="danger">
+                        </app-character-info-field>
+                    </div>
+
+                    <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                        <app-character-info-field title="Books" icon="pi-book" iconColor="secondary"
+                            [value]="character.books" severity="secondary">
+                        </app-character-info-field>
+                    </div>
+
+                    <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                        <app-character-info-field title="POV Books" icon="pi-eye" iconColor="teal"
+                            [value]="character.povBooks" severity="info">
+                        </app-character-info-field>
+                    </div>
+
+                    <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                        <app-character-info-field title="TV Series" icon="pi-video" iconColor="orange"
+                            [value]="character.tvSeries" severity="warn">
+                        </app-character-info-field>
+                    </div>
+
+                    <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                        <app-character-info-field title="Played By" icon="pi-user" iconColor="indigo"
+                            [value]="character.playedBy" severity="contrast">
+                        </app-character-info-field>
+                    </div>
+                </div>
+            </div>
+        </p-card>
+    </div>
+</div>
+} @else {
+<p-card>
+    <div class="text-center p-4">
+        <i class="pi pi-exclamation-triangle text-4xl text-red-500 mb-3"></i>
+        <h3 class="text-xl font-semibold mb-2">Character Not Found</h3>
+        <p class="text-600 m-0">The requested character could not be loaded.</p>
+    </div>
+</p-card>
+}

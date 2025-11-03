@@ -1,0 +1,16 @@
+.characters-layout {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 200px);
+    overflow: hidden;
+}
+
+.characters-content {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0; /* Allow flex item to shrink below content size */
+}
+
+.characters-footer {
+    flex-shrink: 0;
+}

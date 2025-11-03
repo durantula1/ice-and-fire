@@ -1,0 +1,43 @@
+<div class="characters-container p-4">
+    <div class="mb-4 flex flex-column md:flex-row align-items-center justify-content-between gap-4">
+        <div class="text-center md:text-left">
+            <h1 class="text-4xl font-bold m-0">Favorites</h1>
+            <p class="text-600">Your favorite characters</p>
+        </div>
+    </div>
+
+    @if (!isAuthenticated()) {
+    <div class="text-center p-4">
+        <i class="pi pi-lock text-4xl text-white mb-3"></i>
+        <h3 class="text-xl font-semibold mb-2">Login Required</h3>
+        <p class="text-600 mb-5">Please log in to view your favorites.</p>
+    </div>
+    } @else if (loading()) {
+    <div class="text-center p-4">
+        <i class="pi pi-spin pi-spinner text-4xl text-primary mb-3"></i>
+        <p class="text-600 m-0">Loading your favorites...</p>
+    </div>
+    } @else if (error()) {
+    <div class="text-center p-4">
+        <i class="pi pi-exclamation-triangle text-4xl text-red-500 mb-3"></i>
+        <h3 class="text-xl font-semibold mb-2">Error Loading Favorites</h3>
+        <p class="text-600 m-0">{{ error() }}</p>
+    </div>
+    } @else if (favorites().length === 0) {
+    <div class="text-center p-4">
+        <i class="pi pi-heart text-4xl text-gray-400 mb-3"></i>
+        <h3 class="text-xl font-semibold mb-2">No Favorites Yet</h3>
+        <p class="text-600 m-0">Start adding your favorite characters from the characters list!</p>
+    </div>
+    } @else {
+    <div class="favorites-content">
+        <div class="grid">
+            @for (character of favorites(); track character.url) {
+            <div class="col-12 md:col-6 lg:col-4">
+                <app-character-card [character]="character" />
+            </div>
+            }
+        </div>
+    </div>
+    }
+</div>

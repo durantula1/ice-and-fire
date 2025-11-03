@@ -1,0 +1,40 @@
+<div>
+    <div class="p-4 pb-0">
+        <div class="flex gap-2 mb-4">
+            <p-skeleton width="8rem" height="2.5rem"></p-skeleton>
+            <p-skeleton width="12rem" height="2.5rem"></p-skeleton>
+        </div>
+    </div>
+
+    <div class="character-info-container px-4 pb-4">
+        <p-card class="character-info-card">
+            <ng-template pTemplate="header">
+                <div class="p-4 text-center">
+                    <p-skeleton shape="circle" size="6rem"></p-skeleton>
+                </div>
+            </ng-template>
+
+            <div class="character-details">
+                <div class="mb-4">
+                    <p-skeleton width="20rem" height="2.5rem" class="mb-3"></p-skeleton>
+
+                    <div class="flex flex-wrap justify-content-center gap-2 mb-4">
+                        <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                        <p-skeleton width="6rem" height="2rem"></p-skeleton>
+                    </div>
+                </div>
+
+                <div class="grid">
+                    @for (i of [1,2,3,4,5,6,7,8,9,10,11,12]; track i) {
+                    <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                        <div class="mb-4">
+                            <p-skeleton width="5rem" height="1.75rem" class="mb-3"></p-skeleton>
+                            <p-skeleton width="8rem" height="1.25rem"></p-skeleton>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </p-card>
+    </div>
+</div>

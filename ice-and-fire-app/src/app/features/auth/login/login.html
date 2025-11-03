@@ -1,0 +1,52 @@
+<div class="flex justify-content-center align-items-center p-4 auth-container">
+    <p-card class="w-full max-w-30rem shadow-8">
+        <ng-template pTemplate="header">
+            <div class="text-center pt-4 pb-2">
+                <h1 class="text-4xl font-bold m-0 mb-2 auth-header-title">Welcome Back</h1>
+                <p class="text-600 m-0">Sign in to continue your journey</p>
+            </div>
+        </ng-template>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="p-fluid">
+            <div class="field mb-5">
+                <p-floatLabel>
+                    <p-iconfield iconPosition="left">
+                        <p-inputicon class="pi pi-envelope" />
+                        <input pInputText id="email" formControlName="email" class="w-full p-inputtext-lg"
+                            [ngClass]="{'ng-invalid ng-dirty': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}" />
+                    </p-iconfield>
+                    <label for="email">Email Address</label>
+                </p-floatLabel>
+                @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+                <p-message severity="error" text="Please enter a valid email address" />
+                }
+            </div>
+
+            <div class="field mb-5">
+                <p-floatLabel>
+                    <p-password id="password" formControlName="password" [toggleMask]="true" [feedback]="false"
+                        class="w-full" inputStyleClass="p-inputtext-lg w-full"
+                        [ngClass]="{'ng-invalid ng-dirty': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}">
+                    </p-password>
+                    <label for="password">Password</label>
+                </p-floatLabel>
+                @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+                <p-message severity="error" text="Password must be at least 6 characters" />
+                }
+            </div>
+
+            <p-button type="submit" label="Sign In" icon="pi pi-sign-in" [disabled]="loginForm.invalid || loading()"
+                [loading]="loading()" styleClass="w-full p-button-lg p-button-raised" severity="primary"></p-button>
+        </form>
+
+        <ng-template pTemplate="footer">
+            <p-divider></p-divider>
+            <p class="text-center text-600 m-0">
+                Don't have an account?
+                <a routerLink="/register" class="text-primary no-underline font-semibold ml-1 hover:underline">
+                    Create one now
+                </a>
+            </p>
+        </ng-template>
+    </p-card>
+</div>

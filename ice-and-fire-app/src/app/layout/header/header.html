@@ -1,0 +1,42 @@
+<header class="header-section">
+    <p-toolbar class="main-toolbar">
+        <div class="cursor-pointer" (click)="navigateToLanding()">
+            <div class="logo-section">
+                <img src="assets/logoo.png" alt="Ice & Fire Logo" style="height: 4rem;">
+                <div class="title-section">
+                    <h1 class="main-title">Ice & Fire</h1>
+                    <p class="subtitle">Game of Thrones Universe</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-toolbar-group-center navigation-menu flex gap-3 align-items-center">
+            @for (item of menuItems; track item.label) {
+            <ng-container>
+                <a [routerLink]="item.routerLink" class="nav-link flex align-items-center gap-2 p-3 ">
+                    <i [class]="item.icon"></i>
+                    <span>{{ item.label }}</span>
+                    @if (item.label === 'Favorites' && favoritesCount() > 0) {
+                    <span class="favorites-count bg-red-500 text-white text-xs px-2 py-1 border-round-lg font-bold">
+                        {{ favoritesCount() }}
+                    </span>
+                    }
+                </a>
+            </ng-container>
+            }
+        </div>
+
+        <div class="flex align-items-center">
+            @if (isAuthenticated()) {
+            <div class="flex align-items-center gap-3">
+                <span class="user-email font-medium">{{ user()?.email }}</span>
+                <p-button type="button" (click)="onLogout()" icon="pi pi-sign-out" class="p-2" rounded="true"
+                    severity="danger"></p-button>
+            </div>
+            } @else {
+            <p-button type="button" (click)="onLogin()" icon="pi pi-sign-in" class="p-2" rounded="true"
+                severity="danger"></p-button>
+            }
+        </div>
+    </p-toolbar>
+</header>

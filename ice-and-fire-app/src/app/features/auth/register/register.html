@@ -1,0 +1,66 @@
+<div class="flex justify-content-center align-items-center p-4 auth-container">
+    <p-card class="w-full max-w-30rem shadow-8">
+        <ng-template pTemplate="header">
+            <div class="text-center pt-4 pb-2">
+                <h1 class="text-4xl font-bold m-0 mb-2 auth-header-title">Create Account</h1>
+                <p class="text-600 m-0">Join us and start your adventure</p>
+            </div>
+        </ng-template>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="p-fluid">
+            <div class="field mb-5">
+                <p-floatLabel>
+                    <p-iconfield iconPosition="left">
+                        <p-inputicon class="pi pi-envelope" />
+                        <input pInputText id="email" formControlName="email" class="w-full p-inputtext-lg"
+                            [ngClass]="{'ng-invalid ng-dirty': registerForm.get('email')?.invalid && registerForm.get('email')?.touched}" />
+                    </p-iconfield>
+                    <label for="email">Email Address</label>
+                </p-floatLabel>
+                @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+                <p-message severity="error" text="Please enter a valid email address" />
+                }
+            </div>
+
+            <div class="field mb-5">
+                <p-floatLabel>
+                    <p-password id="password" formControlName="password" [toggleMask]="true" [feedback]="false"
+                        class="w-full" inputStyleClass="p-inputtext-lg w-full"
+                        [ngClass]="{'ng-invalid ng-dirty': registerForm.get('password')?.invalid && registerForm.get('password')?.touched}">
+                    </p-password>
+                    <label for="password">Password</label>
+                </p-floatLabel>
+                @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+                <p-message severity="error" text="Password must be at least 6 characters" />
+                }
+            </div>
+
+            <div class="field mb-5">
+                <p-floatLabel>
+                    <p-password id="confirmPassword" formControlName="confirmPassword" [toggleMask]="true"
+                        [feedback]="false" class="w-full" inputStyleClass="p-inputtext-lg w-full"
+                        [ngClass]="{'ng-invalid ng-dirty': registerForm.errors?.['passwordMismatch'] && registerForm.get('confirmPassword')?.touched}">
+                    </p-password>
+                    <label for="confirmPassword">Confirm Password</label>
+                </p-floatLabel>
+                @if (registerForm.errors?.['passwordMismatch'] && registerForm.get('confirmPassword')?.touched) {
+                <p-message severity="error" text="Passwords do not match" />
+                }
+            </div>
+
+            <p-button type="submit" label="Create Account" icon="pi pi-user-plus"
+                [disabled]="registerForm.invalid || loading()" [loading]="loading()"
+                styleClass="w-full p-button-lg p-button-raised" severity="success"></p-button>
+        </form>
+
+        <ng-template pTemplate="footer">
+            <p-divider></p-divider>
+            <p class="text-center text-600 m-0">
+                Already have an account?
+                <a routerLink="/login" class="text-primary no-underline font-semibold ml-1 hover:underline">
+                    Sign in here
+                </a>
+            </p>
+        </ng-template>
+    </p-card>
+</div>
