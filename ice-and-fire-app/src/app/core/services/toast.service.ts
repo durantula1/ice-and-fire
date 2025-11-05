@@ -39,8 +39,4 @@ export class ToastService {
       detail: message,
     });
   }
-
-  clear() {
-    this.messageService.clear();
-  }
 }

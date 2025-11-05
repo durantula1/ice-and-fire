@@ -1,34 +1,17 @@
-<div class="characters-container p-4">
-    <div class="mb-4 flex flex-column md:flex-row align-items-center justify-content-between gap-4">
-        <div class="text-center md:text-left">
-            <h1 class="text-4xl font-bold m-0">Favorites</h1>
-            <p class="text-600">Your favorite characters</p>
-        </div>
-    </div>
+<div class="characters-container">
+    <app-page-title-section [title]="'Favorites'" [description]="'Your favorite characters'" [showSearch]="false" />
 
     @if (!isAuthenticated()) {
-    <div class="text-center p-4">
-        <i class="pi pi-lock text-4xl text-white mb-3"></i>
-        <h3 class="text-xl font-semibold mb-2">Login Required</h3>
-        <p class="text-600 mb-5">Please log in to view your favorites.</p>
-    </div>
+    <app-status-message [title]="'Login Required'" [description]="'Please log in to view your favorites.'"
+        [icon]="'pi pi-lock'" />
     } @else if (loading()) {
-    <div class="text-center p-4">
-        <i class="pi pi-spin pi-spinner text-4xl text-primary mb-3"></i>
-        <p class="text-600 m-0">Loading your favorites...</p>
-    </div>
+    <app-status-message [title]="'Loading your favorites...'" [icon]="'pi pi-spin pi-spinner'" />
     } @else if (error()) {
-    <div class="text-center p-4">
-        <i class="pi pi-exclamation-triangle text-4xl text-red-500 mb-3"></i>
-        <h3 class="text-xl font-semibold mb-2">Error Loading Favorites</h3>
-        <p class="text-600 m-0">{{ error() }}</p>
-    </div>
+    <app-status-message [title]="'Error Loading Favorites'" [description]="error() || ''"
+        [icon]="'pi pi-exclamation-triangle'" />
     } @else if (favorites().length === 0) {
-    <div class="text-center p-4">
-        <i class="pi pi-heart text-4xl text-gray-400 mb-3"></i>
-        <h3 class="text-xl font-semibold mb-2">No Favorites Yet</h3>
-        <p class="text-600 m-0">Start adding your favorite characters from the characters list!</p>
-    </div>
+    <app-status-message [title]="'No Favorites Yet'"
+        [description]="'Start adding your favorite characters from the characters list!'" [icon]="'pi pi-heart'" />
     } @else {
     <div class="favorites-content">
         <div class="grid">

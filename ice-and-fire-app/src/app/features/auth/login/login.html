@@ -1,10 +1,8 @@
 <div class="flex justify-content-center align-items-center p-4 auth-container">
     <p-card class="w-full max-w-30rem shadow-8">
         <ng-template pTemplate="header">
-            <div class="text-center pt-4 pb-2">
-                <h1 class="text-4xl font-bold m-0 mb-2 auth-header-title">Welcome Back</h1>
-                <p class="text-600 m-0">Sign in to continue your journey</p>
-            </div>
+            <app-form-header [title]="'Welcome Back'"
+                [description]="'Sign in to continue your journey'"></app-form-header>
         </ng-template>
 
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="p-fluid">
@@ -41,12 +39,8 @@
 
         <ng-template pTemplate="footer">
             <p-divider></p-divider>
-            <p class="text-center text-600 m-0">
-                Don't have an account?
-                <a routerLink="/register" class="text-primary no-underline font-semibold ml-1 hover:underline">
-                    Create one now
-                </a>
-            </p>
+            <app-form-footer [text]="'Don\'t have an account?'" [linkRouterLink]="'/register'"
+                [linkText]="'Create one now'"></app-form-footer>
         </ng-template>
     </p-card>
 </div>

@@ -1,20 +1,8 @@
 <div class="characters-layout">
 
-    <div class="characters-header p-4 pb-3">
-        <div class="flex flex-column md:flex-row align-items-center justify-content-between gap-4">
-            <div class="text-center md:text-left">
-                <h1 class="text-4xl font-bold m-0">Characters</h1>
-                <p class="text-600">Discover the heroes and villains of Westeros</p>
-            </div>
+    <app-page-title-section [title]="'Characters'" [description]="'Discover the heroes and villains of Westeros'"
+        [(searchTerm)]="searchTerm" [showSearch]="true" />
 
-            <div class="w-full md:w-auto">
-                <div class="p-input-icon-left w-full md:w-20rem">
-                    <input pInputText [ngModel]="searchTerm()" (ngModelChange)="searchTerm.set($event)" type="text"
-                        placeholder="Search characters by full name" class="w-full" />
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="characters-content" #charactersContent>
         <div class="p-4">

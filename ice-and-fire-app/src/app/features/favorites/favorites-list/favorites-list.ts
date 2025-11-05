@@ -9,10 +9,12 @@ import {
 } from '../../../core/store/favorites/favorites.selectors';
 import { selectIsAuthenticated } from '../../../core/store/auth/auth.selectors';
 import { CharacterCard } from '../../../shared/components/character-card/character-card';
+import { PageTitleSection } from '../../../shared/components/page-title-section/page-title-section';
+import { StatusMessage } from '../components/status-message/status-message';
 
 @Component({
   selector: 'app-favorites-list',
-  imports: [CharacterCard],
+  imports: [CharacterCard, PageTitleSection, StatusMessage],
   templateUrl: './favorites-list.html',
   styleUrl: './favorites-list.scss',
 })

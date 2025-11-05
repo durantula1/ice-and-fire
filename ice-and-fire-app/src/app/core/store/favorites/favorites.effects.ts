@@ -5,7 +5,6 @@ import { map, catchError, switchMap, tap } from 'rxjs/operators';
 import { FavoriteService } from '../../services';
 import { ToastService } from '../../services/toast.service';
 import * as FavoritesActions from './favorites.actions';
-import { ICharacter } from '../../models';
 
 @Injectable()
 export class FavoritesEffects {
@@ -71,13 +70,7 @@ export class FavoritesEffects {
   );
 
   loadFavoritesSuccess$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(FavoritesActions.loadFavoritesSuccess),
-        tap(() => {
-          // Optional: Show success message if needed
-        })
-      ),
+    () => this.actions$.pipe(ofType(FavoritesActions.loadFavoritesSuccess)),
     { dispatch: false }
   );
 }

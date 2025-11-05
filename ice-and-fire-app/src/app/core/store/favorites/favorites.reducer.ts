@@ -46,11 +46,9 @@ export const favoritesReducer = createReducer(
     let favorites: ICharacter[];
 
     if (action === 'added') {
-      // Add to favorites if not already present
       const exists = state.favorites.some((fav) => fav.url === character.url);
       favorites = exists ? state.favorites : [...state.favorites, character];
     } else {
-      // Remove from favorites
       favorites = state.favorites.filter((fav) => fav.url !== character.url);
     }
 

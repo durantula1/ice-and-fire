@@ -1,6 +1,5 @@
 import { Component, inject, signal, OnInit, DestroyRef } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Actions, ofType } from '@ngrx/effects';
 import { CardModule } from 'primeng/card';
@@ -15,13 +14,14 @@ import { CommonModule } from '@angular/common';
 import * as AuthActions from '../../../core/store/auth/auth.actions';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MessageModule } from 'primeng/message';
+import { FormHeader } from '../../../shared/components/form-header/form-header';
+import { FormFooter } from '../../../shared/components/form-footer/form-footer';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    RouterLink,
     CardModule,
     InputTextModule,
     PasswordModule,
@@ -32,6 +32,8 @@ import { MessageModule } from 'primeng/message';
     DividerModule,
     CommonModule,
     MessageModule,
+    FormHeader,
+    FormFooter,
   ],
   templateUrl: './login.html',
   styleUrl: './login.scss',

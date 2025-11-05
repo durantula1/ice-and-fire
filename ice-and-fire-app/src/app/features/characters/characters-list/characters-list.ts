@@ -8,8 +8,6 @@ import {
   computed,
   signal,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   combineLatest,
@@ -21,8 +19,8 @@ import {
   switchMap,
 } from 'rxjs';
 import { CharacterCard } from '../../../shared/components/character-card/character-card';
+import { PageTitleSection } from '../../../shared/components/page-title-section/page-title-section';
 import { CardModule } from 'primeng/card';
-import { InputTextModule } from 'primeng/inputtext';
 import { PaginatorModule } from 'primeng/paginator';
 import { CharactersListSkeleton } from '../components/characters-list-skeleton/characters-list-skeleton';
 import { CARDS_SKELETON_COUNT, CharacterService } from '../../../core';
@@ -31,11 +29,9 @@ import { toSignal, toObservable } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-characters-list',
   imports: [
-    CommonModule,
-    FormsModule,
     CharacterCard,
+    PageTitleSection,
     CardModule,
-    InputTextModule,
     PaginatorModule,
     CharactersListSkeleton,
   ],

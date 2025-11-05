@@ -17,9 +17,8 @@ import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { routes } from './app.routes';
-import { authReducer, AuthEffects } from './core/store/auth';
 import { favoritesReducer, FavoritesEffects } from './core/store/favorites';
-import { HttpInterceptor } from './core';
+import { AuthEffects, authReducer, HttpInterceptor } from './core';
 
 export const appConfig: ApplicationConfig = {
   providers: [

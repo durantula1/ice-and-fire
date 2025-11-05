@@ -18,7 +18,6 @@ export function HttpInterceptor(
   const toastService = inject(ToastService);
   const headersConfig: any = {
     Accept: req.headers.get('Accept') || 'application/json',
-    'X-Requested-With': 'XMLHttpRequest',
   };
 
   const clonedRequest = req.clone({ setHeaders: headersConfig });
